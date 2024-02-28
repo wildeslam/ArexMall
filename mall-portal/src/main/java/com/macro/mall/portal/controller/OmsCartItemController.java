@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -45,6 +46,7 @@ public class OmsCartItemController {
     @ResponseBody
     public CommonResult<List<OmsCartItem>> list() {
         List<OmsCartItem> cartItemList = cartItemService.list(memberService.getCurrentMember().getId());
+        cartItemList.forEach(omsCartItem -> omsCartItem.setPrice(omsCartItem.getPrice().add(new BigDecimal(100))));
         return CommonResult.success(cartItemList);
     }
 

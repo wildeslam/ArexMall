@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * 首页品牌推荐管理Controller
@@ -41,7 +42,8 @@ public class PmsPortalBrandController {
     @ResponseBody
     public CommonResult<PmsBrand> detail(@PathVariable Long brandId) {
         PmsBrand brand = portalBrandService.detail(brandId);
-        //brand.setTodaySales(1092L);
+        portalBrandService.productList(brandId, 0, 10);
+        brand.setTodaySales((long) (new Random().nextInt(901) + 100));
         return CommonResult.success(brand);
     }
 
