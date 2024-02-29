@@ -41,7 +41,7 @@ public class HomeController {
     public CommonResult<List<PmsProduct>> recommendProductList(@RequestParam(value = "pageSize", defaultValue = "4") Integer pageSize,
                                                                @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<PmsProduct> productList = homeService.recommendProductList(pageSize, pageNum);
-        homeService.hotProductList(pageNum, pageSize);
+        homeService.getProductCateList(1000L);
         return CommonResult.success(productList);
     }
 
