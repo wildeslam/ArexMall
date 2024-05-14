@@ -763,8 +763,8 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     private ConfirmOrderResult.CalcAmount calcCartAmount(List<CartPromotionItem> cartPromotionItemList) {
         ConfirmOrderResult.CalcAmount calcAmount = new ConfirmOrderResult.CalcAmount();
         calcAmount.setFreightAmount(new BigDecimal(0));
-        BigDecimal totalAmount = new BigDecimal("0");
-        BigDecimal promotionAmount = new BigDecimal("0");
+        BigDecimal totalAmount = new BigDecimal(0);
+        BigDecimal promotionAmount = new BigDecimal(0);
         for (CartPromotionItem cartPromotionItem : cartPromotionItemList) {
             totalAmount = totalAmount.add(cartPromotionItem.getPrice().multiply(new BigDecimal(cartPromotionItem.getQuantity())));
             promotionAmount = promotionAmount.add(cartPromotionItem.getReduceAmount().multiply(new BigDecimal(cartPromotionItem.getQuantity())));
