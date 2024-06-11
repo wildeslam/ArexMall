@@ -1,5 +1,5 @@
-docker stop mall-portal-origin
-docker container rm mall-portal-origin
+docker stop mall-portal
+docker container rm mall-portal
 
 cd ..
 mvn clean package -DskipTests
@@ -12,7 +12,7 @@ cp ../../../arex-agent-java/arex-agent-jar/arex-agent-bootstrap.jar arex-agent-b
 
 # docker build -f MallSearch.Dockerfile -t mall-search .
 # docker build -f MallAdmin.Dockerfile -t mall-admin .
-docker build -f MallPortal.Dockerfile -t mall-portal-origin .
+docker build -f MallPortal.Dockerfile -t mall-portal .
 
 # rm mall-search-1.0-SNAPSHOT.jar
 # rm mall-admin-1.0-SNAPSHOT.jar
@@ -22,11 +22,11 @@ rm arex-agent-bootstrap.jar
 
 
 
-docker run -p 8084:8084 --name mall-portal-origin --net="arex-mall_default" \
+docker run -p 8085:8085 --name mall-portal --net="arex-mall_default" \
 --link mysql:db \
 --link redis:redis \
 --link mongo:mongo \
 --link rabbitmq:rabbit \
 -v /etc/localtime:/etc/localtime \
--v /mydata/app/portal-origin/logs:/var/logs \
--d mall-portal-origin
+-v /mydata/app/portal/logs:/var/logs \
+-d mall-portal
